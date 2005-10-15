@@ -3,7 +3,7 @@
 # t/001_basic.t - Basic tests for RDF parsing
 
 use strict;
-use Test::More tests => 2;
+use Test::More tests => 3;
 
 #01
 BEGIN { use_ok( 'OpenGuides::RDF::Reader' ); }
@@ -31,5 +31,28 @@ is_deeply( \%page_data, {
 	summary => 'A page for testing the system.',
 	category => [ 'Beer gardens' ],
 	locales => [ 'West End' ],
-	}, "Data matches expected from rdf");
+	}, "sandbox - all fields populated");
 
+$rdf_data = do { local (@ARGV, $/) = 't/amt_expresso.rdf'; <> };
+
+%page_data = parse_rdf($rdf_data);
+
+#03
+is_deeply( \%page_data, {
+	username => 'Kake',
+	changed => '2003-12-10T09:32:37',
+	version => 4,
+	source => 'http://london.openguides.org/index.cgi?AMT_Espresso',
+	country => undef,
+	city => undef,
+	address => undef,
+	postcode => undef,
+	phone => undef,
+	fax => undef,
+	website => 'http://www.amtespresso.co.uk/',
+	opening_hours => 'Various',
+	latitude => undef,
+	longitude => undef,
+	summary => undef,
+	category => [ 'Coffee Shops' ],
+	}, "AMT Expresso: see RT #15073");

@@ -4,7 +4,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-    $VERSION     = '0.01';
+    $VERSION     = '0.02';
     @ISA         = qw(Exporter);
     @EXPORT      = qw(parse_rdf);
     @EXPORT_OK   = qw(parse_rdf);
@@ -23,14 +23,22 @@ sub parse_rdf {
 	#NumericEscape => 2,
     );
 
+    my $geo;
     my $desc = $rdf->{'rdf:Description'};
+    if (ref $desc eq 'ARRAY') {
+    	$geo = $desc->[1];
+	$desc = $desc->[0];
+    }
+    else {
+    	$geo = $rdf->{'geo:SpatialThing'};
+    }
+    
     my %descmap = (
     	username => 'dc:contributor',
 	changed => 'dc:date',
 	version => 'wiki:version',
 	source => 'dc:source',
 	);
-    my $geo = $rdf->{'geo:SpatialThing'};
     my %geomap = (
     	country => 'country',
 	city => 'city',
