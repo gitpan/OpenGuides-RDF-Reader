@@ -1,0 +1,12 @@
+MANIFEST
+README
+LICENSE
+Todo
+Changes
+Makefile.PL
+lib/OpenGuides/RDF/Reader.pm
+t/001_basic.t
+t/pod.t
+t/pod_coverage.t
+t/sandbox.rdf
+META.yml                                 Module meta-data (added by MakeMaker)
