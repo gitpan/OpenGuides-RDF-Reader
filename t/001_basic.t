@@ -25,12 +25,12 @@ is_deeply( \%page_data, {
 	phone => '020 7456 7890',
 	fax => '020 7654 3210',
 	website => 'http://www.mysite.com',
-	opening_hours => '24 by 7',
+	opening_hours_text => '24 by 7',
 	latitude => 51.362603,
 	longitude => -0.092219,
 	summary => 'A page for testing the system.',
 	category => [ 'Beer gardens' ],
-	locales => [ 'West End' ],
+	locale => [ 'West End' ],
 	}, "sandbox - all fields populated");
 
 $rdf_data = do { local (@ARGV, $/) = 't/amt_expresso.rdf'; <> };
@@ -50,7 +50,7 @@ is_deeply( \%page_data, {
 	phone => undef,
 	fax => undef,
 	website => 'http://www.amtespresso.co.uk/',
-	opening_hours => 'Various',
+	opening_hours_text => 'Various',
 	latitude => undef,
 	longitude => undef,
 	summary => undef,

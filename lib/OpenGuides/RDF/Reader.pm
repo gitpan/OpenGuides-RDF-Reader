@@ -4,7 +4,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-    $VERSION     = '0.02';
+    $VERSION     = '0.03';
     @ISA         = qw(Exporter);
     @EXPORT      = qw(parse_rdf);
     @EXPORT_OK   = qw(parse_rdf);
@@ -47,7 +47,7 @@ sub parse_rdf {
 	phone => 'phone',
 	fax => 'fax',
 	website => 'foaf:homepage',
-	opening_hours => 'chefmoz:Hours',
+	opening_hours_text => 'chefmoz:Hours',
 	longitude => 'geo:long',
 	latitude => 'geo:lat',
 	category => 'dc:subject',
@@ -56,7 +56,7 @@ sub parse_rdf {
     my %out;
     $out{$_} = $desc->{$descmap{$_}} for keys %descmap;
     $out{$_} = $geo->{$geomap{$_}} for keys %geomap;
-    $out{locales} = [ map {$_->{'wn:Neighborhood'}{'foaf:name'}}
+    $out{locale} = [ map {$_->{'wn:Neighborhood'}{'foaf:name'}}
     	@{$geo->{'foaf:based_near'}} ] if exists $geo->{'foaf:based_near'};
 
     %out;
