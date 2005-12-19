@@ -1,5 +1,8 @@
 Revision history for Perl module OpenGuides::RDF::Reader
 
+0.05 Sun Dec 18 2005
+    Add coordinate convertion to og_mirror
+
 0.04 Sat Oct 29 2005
 	Include og_mirror script in the distribution, 
 	as requested by Dominic Hargreaves.

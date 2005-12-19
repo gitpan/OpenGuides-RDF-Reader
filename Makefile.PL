@@ -3,7 +3,7 @@ use warnings;
 use ExtUtils::MakeMaker;
 
 my %prereq = (
-                     'Test::Simple' => 0.44,
+             'Test::Simple' => 0.44,
 		     'XML::Simple' => 0,
 	     );
 
@@ -28,6 +28,7 @@ END
     $prereq{'WWW::Mechanize'} = 0;
     $prereq{'Pod::Usage'} = 0;
     $prereq{'XML::RSS'} = 0;
+    $prereq{'CGI::Wiki::Plugin::Locator::UTM'} = 0.04;
 }
     
 WriteMakefile(
